@@ -117,4 +117,19 @@ void FileLib::move(string oldPath, string newPath) {
     rename(oldPath, newPath);
 }
 
+vector<string> FileLib::dirFiles(string path) {
+    if(isStaticDirPath(path)){
+        vector<string> files;
+        for(const auto &entry : fs::directory_iterator(path)){
+            if(entry.path() != "." || entry.path() != ".."){
+                files.push_back(entry.path());
+            }
+        }
+
+        return files;
+    } else
+        throw "Passed relative path or path to file";
+
+}
+
 

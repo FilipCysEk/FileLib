@@ -93,6 +93,13 @@ public:
      */
     static void move(string oldPath, string newPath);
 
+    /**
+     * @brief Return file and directory list in path
+     * @param path static path to get list
+     * @return list of file/dirs name
+     */
+    static vector<string> dirFiles(string path);
+
 
 private:
     static bool isStaticPath(string path);
