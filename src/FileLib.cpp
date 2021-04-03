@@ -84,6 +84,7 @@ bool FileLib::emptyingDirectory(string path) {
         res += fs::remove_all(path);
         res += createDirectory(path);
         return res == 2;
+        //TODO throw error when emptying and not delete dir
     }
     else
         throw "Passed relative path";
@@ -122,7 +123,7 @@ vector<string> FileLib::dirFiles(string path) {
         vector<string> files;
         for(const auto &entry : fs::directory_iterator(path)){
             if(entry.path() != "." || entry.path() != ".."){
-                files.push_back(entry.path());
+                files.push_back(entry.path().filename());
             }
         }
 

@@ -4,9 +4,9 @@
 
 #ifndef LIBRARIES1_FILELIB_H
 #define LIBRARIES1_FILELIB_H
-#include <iostream>
 #include <experimental/filesystem>
 #include <string>
+#include <chrono>
 
 using namespace std;
 namespace fs = experimental::filesystem;
@@ -19,21 +19,21 @@ public:
      * @param path relative path to file/directory
      * @return static path to file/directory (directory have on end '/')
      */
-    string getFullPath(string path);
+    static string getFullPath(string path);
 
     /**
      * @brief CHeck existing of file/directory
      * @param path static path to file/directory
      * @return 1 - exists, 0 - no exist
      */
-    bool fileExist(string path);
+    static bool fileExist(string path);
 
     /**
      * @brief Return file modification time
      * @param path static path to file
      * @return last modification time
      */
-    time_t fileTime(string path);
+    static time_t fileTime(string path);
 
     /**
      * @brief Creating directory
@@ -41,27 +41,27 @@ public:
      * @param path static path to directory, where directory be created
      * @return 1 - successfully, 0 - error
      */
-    bool createDirectory(string name, string path);
+    static bool createDirectory(string name, string path);
     /**
      * @brief Creating directory
      * @param path static path to new directory
      * @return 1 - successfully, 0 - error
      */
-    bool createDirectory(string path);
+    static bool createDirectory(string path);
 
     /**
      * @brief Remove file/directory
      * @param path static path to removed file/directory
      * @return 1 - successfully, 0 - error
      */
-    bool removeFile(string path);
+    static bool removeFile(string path);
 
     /**
      * @brief Remove all files from directory
      * @param path static file to directory
      * @return 1 - successfully, 0 - error
      */
-    bool emptyingDirectory(string path);
+    static bool emptyingDirectory(string path);
 
     /**
      * @brief rename file/directory
@@ -69,29 +69,40 @@ public:
      * @param newName new name of file
      * @param path static path to directory, where this file is
      */
-    void rename(string oldName, string newName, string path);
+    static void rename(string oldName, string newName, string path);
 
     /**
      * @brief Rename file/directory
      * @param oldFilePath static path to old file with name
      * @param newFilePath static path to new file with name
      */
-    void rename(string oldFilePath, string newFilePath);
+    static void rename(string oldFilePath, string newFilePath);
 
     /**
      * @brief Copy file/firectory
      * @param oldPath static path to source file
      * @param newPath static path to paste file
      */
-    void copy(string oldPath, string newPath);
+    static void copy(string oldPath, string newPath);
 
     /**
      * @brief Move file/directory
      * @param oldPath static path to actually file
      * @param newPath static path to new file location
      */
-    void move(string oldPath, string newPath);
+    static void move(string oldPath, string newPath);
 
+    /**
+     * @brief Return file and directory list in path
+     * @param path static path to get list
+     * @return list of file/dirs name
+     */
+    static vector<string> dirFiles(string path);
+
+
+private:
+    static bool isStaticPath(string path);
+    static bool isStaticDirPath(string path);
 
 };
 
