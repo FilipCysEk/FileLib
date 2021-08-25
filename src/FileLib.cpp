@@ -2,7 +2,7 @@
 // Created by cysiu on 20.10.2019.
 //
 
-#include "../include/FileLib.h"
+#include "FileLib.h"
 
 string FileLib::getFullPath(string path) {
     if (path.find('\\') == string::npos) {

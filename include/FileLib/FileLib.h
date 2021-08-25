@@ -19,7 +19,7 @@ public:
      * @param path relative path to file/directory
      * @return static path to file/directory (directory have on end '/')
      */
-    static string getFullPath(string path);
+        static string getFullPath(string path);
 
     /**
      * @brief CHeck existing of file/directory
